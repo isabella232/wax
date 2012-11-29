@@ -1,4 +1,4 @@
-/* wax - 7.0.0dev12 - v6.0.4-130-gff5d83c */
+/* wax - 7.0.0dev12 - v6.0.4-135-gc719d38 */
 
 
 !function (name, context, definition) {
@@ -3309,7 +3309,7 @@ wax.mm.boxselector = function() {
         box,
         boxselector = {},
         map,
-        callbackManger = new MM.CallbackManager(boxselector, ['change']);
+        callbackManager = new MM.CallbackManager(boxselector, ['change']);
 
     function getMousePoint(e) {
         // start with just the mouse (x, y)
