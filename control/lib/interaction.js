@@ -75,6 +75,10 @@ wax.interaction = function() {
         });
     }
 
+    function dragEnd() {
+        _downLock = false;
+    }
+
     // A handler for 'down' events - which means `mousedown` and `touchstart`
     function onDown(e) {
 

@@ -1,4 +1,4 @@
-/* wax - 7.0.0dev12 - v6.0.4-135-gc719d38 */
+/* wax - 7.0.0dev12 - v6.0.4-136-g9c30d58 */
 
 
 !function (name, context, definition) {
@@ -2534,6 +2534,10 @@ wax.interaction = function() {
                 bean.fire(interaction, 'off');
             }
         });
+    }
+
+    function dragEnd() {
+        _downLock = false;
     }
 
     // A handler for 'down' events - which means `mousedown` and `touchstart`
