@@ -23,7 +23,7 @@ You'll also need to add the class `claro` to div your map will live in,
 so that the 'claro' stylesheet affects it.
 
 <pre class='prettyprint live'>
-var url = 'http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp';
+var url = 'http://api.tiles.mapbox.com/v3/examples.map-vyofok3q.jsonp';
 wax.tilejson(url, function(tilejson) {
    var map = new esri.Map('map-div', {
      extent: new esri.geometry.Extent(-13686470.64, 5203830.72, -13669270.31, 5215290.28,
