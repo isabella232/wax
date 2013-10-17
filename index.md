@@ -3,10 +3,12 @@ layout: default
 title: Wax
 ---
 
-Wax is your gateway into putting maps on the web. It makes it easier to
-use APIs like [Modest Maps](https://github.com/stamen/modestmaps-js) and
-[Leaflet](http://leaflet.cloudmade.com/), and
-documents, from the very start, the basics of web maps.
+Good news, everyone! MapBox has introduced [MapBox.js v1](https://www.mapbox.com/mapbox.js/), which features
+improved browser support, documentation, and access to a rich ecosystem of
+[Leaflet](http://leafletjs.com/) plugins.
+
+We'd highly recommend you use a current version of [MapBox.js](https://www.mapbox.com/mapbox.js/)
+rather than Wax for all future projects, and consider porting your code!
 
 <a class='big-download' href='https://github.com/mapbox/wax/zipball/v6.4.0'>↓ Download Wax 6.4.0
 <span>BSD-licensed, ~16KB</span>
