@@ -1,0 +1,52 @@
+  <h1><a href='{{ site.baseurl }}'>Wax</a></h1>
+  <span class='hattip'>from <a href='http://mapbox.com/'>MapBox</a></span>
+  <p>Need help? <a href='http://support.mapbox.com/'>Post an issue in support.</a>
+  Found a bug? <a href='https://github.com/mapbox/wax/issues'>Post an issue on GitHub</a></p>
+  <h2>Parts!</h2>
+  <ul>
+    {% for post in site.tags.parts %}
+    <li>/ <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <h2>Modest Maps</h2>
+  <ul>
+    {% for post in site.tags.ModestMaps %}
+    <li>/ <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <h2>Leaflet</h2>
+  <ul>
+    {% for post in site.tags.Leaflet %}
+      <li>/ <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <h2>Google Maps</h2>
+  <ul>
+    {% for post in site.tags.Google %}
+      <li>/ <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <h2>ESRI</h2>
+  <ul>
+    {% for post in site.tags.esri %}
+      <li>/ <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <h2>OpenLayers</h2>
+  <ul>
+    {% for post in site.tags.OpenLayers %}
+      <li>/ <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <h2>Polymaps</h2>
+  <ul>
+    {% for post in site.tags.Polymaps %}
+      <li>/ <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <h2>Documentation</h2>
+  <ul>
+    {% for post in site.tags.Documentation %}
+      <li>/ <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>

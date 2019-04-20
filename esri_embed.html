@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01//EN' 'http://www.w3.org/TR/html4/strict.dtd'>
+<html lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=7,IE=9' />
+    <!--The viewport meta tag is used to improve the presentation and behavior
+    of the samples on iOS devices-->
+    <meta name='viewport' content='initial-scale=1, maximum-scale=1,user-scalable=no'
+    />
+    <title>
+      MapBox
+    </title>
+    <link rel='stylesheet' type='text/css' href='http://serverapi.arcgisonline.com/jsapi/arcgis/2.8/js/dojo/dijit/themes/claro/claro.css'>
+    <link rel='stylesheet' type='text/css' href='css/controls.css'>
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+      .esriScalebar{
+        padding: 20px 20px;
+      }
+      #map {
+        padding: 0;
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+      }
+      #citationInfo {
+        position:absolute;
+        color:black;
+        font-weight:bold;
+        font-size:12pt;
+        left:10px;
+        bottom:10px;
+        z-Index:999;
+      }
+    </style>
+    <script type='text/javascript'>var djConfig = {parseOnLoad: true};</script>
+    <script type='text/javascript' src='https://serverapi.arcgisonline.com/jsapi/arcgis/?v=2.8'></script>
+    <script type='text/javascript' src='dist/wax.esri.js'></script>
+    <script type='text/javascript'>
+      dojo.require('esri.map');
+
+      function init() {
+        wax.tilejson('http://a.tiles.mapbox.com/v3/examples.map-vyofok3q.jsonp', function(tj) {
+          var map = new esri.Map('map', {
+            extent: new esri.geometry.Extent(-13686470.64, 5203832.72, -13669272.31, 5215298.28,
+            new esri.SpatialReference({
+              wkid: 3857
+            }))
+          });
+          map.addLayer(new wax.esri.connector(tj));
+          wax.esri.attribution(map, tj).appendTo(map.root);
+        });
+      }
+      dojo.addOnLoad(init);
+    </script>
+  </head>
+  <body class='claro'>
+    <div id='map'>
+    </div>
+  </body>
+</html>
