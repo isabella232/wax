@@ -1,6 +1,6 @@
 ---
 title: Interaction API
-tags: parts
+tags: [parts]
 layout: control
 ---
 

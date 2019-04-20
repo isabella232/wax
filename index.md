@@ -3,15 +3,9 @@ layout: default
 title: Wax
 ---
 
-**We'd highly recommend you use a current version of [MapBox.js](https://www.mapbox.com/mapbox.js/)
-rather than Wax for all future projects, and consider porting your code!**
-
-**Good news, everyone! MapBox has introduced [MapBox.js v1](https://www.mapbox.com/mapbox.js/), which features
+**MapBox has introduced [MapBox.js v1](https://www.mapbox.com/mapbox.js/), which features
 improved browser support, documentation, and access to a rich ecosystem of
 [Leaflet](https://leafletjs.com/) plugins.**
-
-**So please usher yourself to the new [MapBox.js](https://www.mapbox.com/mapbox.js/)
-page and enjoy the future!**
 
 <a class='big-download' href='https://github.com/tilemill-project/wax/zipball/v6.4.0'>↓ Download Wax 6.4.0
 <span>BSD-licensed, ~16KB</span>
