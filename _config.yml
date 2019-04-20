@@ -3,7 +3,7 @@ source:      .
 lsi:         false
 server_port: 4000
 pygments:    true
-markdown:    rdiscount
+markdown:    kramdown
 exclude:     [.git]
 permalink:   /:title.html
 url:         https://github.com/tilemill-project/wax
