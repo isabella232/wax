@@ -1,6 +1,7 @@
 ---
 title: Box Selector
 tags: [ModestMaps]
+categories: [mm]
 layout: control
 ---
 
