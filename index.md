@@ -13,7 +13,7 @@ improved browser support, documentation, and access to a rich ecosystem of
 **So please usher yourself to the new [MapBox.js](https://www.mapbox.com/mapbox.js/)
 page and enjoy the future!**
 
-<a class='big-download' href='https://github.com/mapbox/wax/zipball/v6.4.0'>↓ Download Wax 6.4.0
+<a class='big-download' href='https://github.com/tilemill-project/wax/zipball/v6.4.0'>↓ Download Wax 6.4.0
 <span>BSD-licensed, ~16KB</span>
 </a>
 
@@ -53,9 +53,9 @@ To follow this quick tutorial, you'll need a copy of Wax: unlike Google Maps,
 it's a Javascript library you copy to your server, so you have control over it.
 
 If you just want to download the source code for Wax,
-[get a zip file from GitHub](https://github.com/mapbox/wax/tags).
+[get a zip file from GitHub](https://github.com/tilemill-project/wax/tags).
 If you want to develop Wax, or keep it up to date more easily, [check out the
-project from GitHub](https://github.com/mapbox/wax) with git.
+project from GitHub](https://github.com/tilemill-project/wax) with git.
 
 See [Making Your First Map](#making-your-first-map) below for instructions on
 how to include Wax in your project.

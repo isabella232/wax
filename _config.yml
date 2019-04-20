@@ -6,7 +6,7 @@ pygments:    true
 markdown:    rdiscount
 exclude:     [.git]
 permalink:   /:title.html
-url:         http://mapbox.github.com/wax
+url:         https://github.com/tilemill-project/wax
 baseurl:     /wax
 rdiscount:
   extensions: [smart]

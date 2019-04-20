@@ -16,5 +16,5 @@ and legends. This means that images that are not `http://` references
 or `data:` urls are censored; as are `script` tags and iframes.
 
 Sanitization is done on the template-level with
-[template.js](https://github.com/mapbox/wax/blob/master/control/lib/template.js)
+[template.js](https://github.com/tilemill-project/wax/blob/master/control/lib/template.js)
 and the `html_sanitize` function.
