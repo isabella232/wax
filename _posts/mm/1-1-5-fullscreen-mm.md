@@ -18,7 +18,7 @@ and you can replace it with your own.
 
 <pre class='prettyprint live'>
 wax.tilejson(
-'http://api.tiles.mapbox.com/v3/mapbox.natural-earth-2.jsonp',
+'https://api.tiles.mapbox.com/v3/mapbox.natural-earth-2.jsonp',
   function(tilejson) {
     var m = new MM.Map('map-div', new wax.mm.connector(tilejson));
 

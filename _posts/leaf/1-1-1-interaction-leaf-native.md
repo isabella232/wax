@@ -9,9 +9,9 @@ With Wax v6, you can use native Leaflet popups with UTFGrid interactivity:
 The interaction control lets you do whatever you want with the interactivity
 it provides - see [the documentation on tooltips and its API for the full story.](/wax/tooltips.html)
 
-This is an example of using native [Leaflet](http://leaflet.cloudmade.com/) popups with
-a [MapBox](http://mapbox.com/) map - when you get an `on` event that looks like a
-click, create a [Leaflet popup](http://leaflet.cloudmade.com/reference.html#popup).
+This is an example of using native [Leaflet](https://leaflet.cloudmade.com/) popups with
+a [MapBox](https://mapbox.com/) map - when you get an `on` event that looks like a
+click, create a [Leaflet popup](https://leaflet.cloudmade.com/reference.html#popup).
 
 <div class='demo-map' id='map-div'></div>
 
@@ -28,7 +28,7 @@ click, create a [Leaflet popup](http://leaflet.cloudmade.com/reference.html#popu
 </pre>
 
 <pre class='prettyprint live'>
-wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
+wax.tilejson('https://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
   function(tilejson) {
   var map = new L.Map('map-div')
     .addLayer(new wax.leaf.connector(tilejson))

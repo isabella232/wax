@@ -5,7 +5,7 @@ layout: control
 ---
 
 You can add über-fast interactivity to maps made with
-[TileMill](http://tilemill.com/).
+[TileMill](https://tilemill.com/).
 
 The interaction control lets you do whatever you want with the interactivity
 it provides - see [the documentation on tooltips and its API for the full story.](/wax/tooltips.html)
@@ -25,7 +25,7 @@ it provides - see [the documentation on tooltips and its API for the full story.
 </pre>
 
 <pre class='prettyprint live'>
-wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
+wax.tilejson('https://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
   function(tilejson) {
   var map = new L.Map('map-div')
     .addLayer(new wax.leaf.connector(tilejson))

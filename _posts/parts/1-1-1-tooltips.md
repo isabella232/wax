@@ -28,7 +28,7 @@ The parts here are pretty clear: `.map(map)` assigns the map: in this case,
 since you're using `wax.mm.interaction`, it'll be a Modest Maps map.
 The `.tilejson(tilejson)` call assigns the interaction control to a certain
 chunk of [TileJSON](https://github.com/mapbox/TileJSON), which defines
-where it should grab [UTFGrid](http://mapbox.com/mbtiles-spec/utfgrid/)
+where it should grab [UTFGrid](https://mapbox.com/mbtiles-spec/utfgrid/)
 data, and how it can format the information you look at.
 
 But this doesn't automatically add tooltips: for that, you'll need
@@ -66,7 +66,7 @@ argument of `.on`, and do it in simpler ways:
 <div class='demo-map' id='map-interact'></div>
 
 <pre class='prettyprint live' class='demo-map'>
-var url = 'http://api.tiles.mapbox.com/v3/tmcw.maze.jsonp';
+var url = 'https://api.tiles.mapbox.com/v3/tmcw.maze.jsonp';
 wax.tilejson(url, function(tilejson) {
   var map = new MM.Map('map-interact', new wax.mm.connector(tilejson));
   map.setZoom(5);

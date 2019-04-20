@@ -18,7 +18,7 @@ calls a callback with the current map data, and also exposes an API,
 <script>
 var mm = com.modestmaps;
 wax.tilejson(
-  'http://api.tiles.mapbox.com/v3/mapbox.blue-marble-topo-bathy-jul.jsonp',
+  'https://api.tiles.mapbox.com/v3/mapbox.blue-marble-topo-bathy-jul.jsonp',
   function(tilejson) {
     var m = new mm.Map('map-div',
       new wax.mm.connector(tilejson))

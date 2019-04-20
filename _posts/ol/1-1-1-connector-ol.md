@@ -7,7 +7,7 @@ layout: control-ol
 <div id='map-div' class='demo-map'></div>
 
 <pre class='prettyprint live'>
-wax.tilejson('http://c.tiles.mapbox.com/v3/examples.map-vyofok3q.jsonp',
+wax.tilejson('https://c.tiles.mapbox.com/v3/examples.map-vyofok3q.jsonp',
 function(tilejson) {
     var map = new OpenLayers.Map({
         div: 'map-div',

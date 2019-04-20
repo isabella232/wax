@@ -12,7 +12,7 @@ and then you can add it to a map by chaining `.appendTo(map.parent)`.
 <div id='map-div'></div>
 <pre class='prettyprint live'>
 wax.tilejson(
-  'http://api.tiles.mapbox.com/v3/mapbox.haiti-terrain.jsonp',
+  'https://api.tiles.mapbox.com/v3/mapbox.haiti-terrain.jsonp',
   function(tilejson) {
     var m = new MM.Map('map-div',
       new wax.mm.connector(tilejson));

@@ -1,10 +1,10 @@
 {
     "name": "wax",
-    "version": "3.0.5",
+    "version": "4.6.3",
     "description": "Tools for improving web maps.",
     "author": {
         "name": "MapBox",
-        "url": "http://mapbox.com/",
+        "url": "https://mapbox.com/",
         "email": "info@mapbox.com"
     },
     "contributors": [

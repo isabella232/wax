@@ -8,7 +8,7 @@ rather than Wax for all future projects, and consider porting your code!**
 
 **Good news, everyone! MapBox has introduced [MapBox.js v1](https://www.mapbox.com/mapbox.js/), which features
 improved browser support, documentation, and access to a rich ecosystem of
-[Leaflet](http://leafletjs.com/) plugins.**
+[Leaflet](https://leafletjs.com/) plugins.**
 
 **So please usher yourself to the new [MapBox.js](https://www.mapbox.com/mapbox.js/)
 page and enjoy the future!**
@@ -28,7 +28,7 @@ web-mapping pro.
 &lt;div id='intro-map'&gt;&lt;/div&gt;
 </pre>
 <pre class='prettyprint live'>
-var url = 'http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp';
+var url = 'https://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp';
 
 wax.tilejson(url, function(tilejson) {
   var m = new MM.Map('intro-map',
@@ -62,8 +62,8 @@ how to include Wax in your project.
 
 ## A Quick Intro
 
-Suppose you're making cool map designs with [TileMill](http://mapbox.com/tilemill/)
-or you want to use maps from [MapBox Hosting](http://tiles.mapbox.com), and you want to
+Suppose you're making cool map designs with [TileMill](https://mapbox.com/tilemill/)
+or you want to use maps from [MapBox Hosting](https://tiles.mapbox.com), and you want to
 get famous by putting them somewhere online - your blog, a big CMS, or anywhere else.
 
 Don't be afraid! It's not too hard to do, and once you've learned how to do it,
@@ -72,7 +72,7 @@ you'll have the power to make super-custom maps with minimal effort.
 So your ingredients will be:
 
 * A map server, like [TileStream](https://github.com/mapbox/tilestream) or
-  [MapBox Hosting](http://tiles.mapbox.com). All of the examples you'll see
+  [MapBox Hosting](https://tiles.mapbox.com). All of the examples you'll see
   here use MapBox Hosting, so you can copy & paste at will and it'll all work.
 * A Javascript API, like [Modest Maps](https://github.com/stamen/modestmaps-js)
 * Wax
@@ -80,9 +80,9 @@ So your ingredients will be:
 
 The mapping server serves up **tiles** of rendered data - tiles being 256 pixel
 square images covering some of the world. Here's a tile of Europe from the
-[World Light tileset](http://tiles.mapbox.com/mapbox/map/world-light).
+[World Light tileset](https://tiles.mapbox.com/mapbox/map/world-light).
 
-![Europe](http://a.tiles.mapbox.com/v3/mapbox.world-light/2/2/1.png)
+![Europe](https://a.tiles.mapbox.com/v3/mapbox.world-light/2/2/1.png)
 
 Of course, things will get a lot cooler than this: Wax lets you use your own
 tiles, add zoom buttons, interaction, and a lot more. But it all starts out
@@ -115,7 +115,7 @@ drag around the little map below -
 Modest Maps is making the tiles move when you click and drag.
 
 <pre class='prettyprint'>
-var url = 'http://api.tiles.mapbox.com/v3/mapbox.world-light.jsonp';
+var url = 'https://api.tiles.mapbox.com/v3/mapbox.world-light.jsonp';
 wax.tilejson(url, function(tilejson) {
     // Set up a map in a div with the id 'modestmaps-setup'
     var m = new MM.Map('modestmaps-setup',

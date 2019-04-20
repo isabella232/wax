@@ -28,7 +28,7 @@ the TileJSON format at `wax.g.connector`.
 <div id='map-div' class='demo-map'></div>
 
 <pre class='prettyprint live'>
-wax.tilejson('http://api.tiles.mapbox.com/v2/mapbox.geography-class.jsonp',
+wax.tilejson('https://api.tiles.mapbox.com/v2/mapbox.geography-class.jsonp',
   function(tilejson) {
   var map = new google.maps.Map(
     document.getElementById('map-div'), {

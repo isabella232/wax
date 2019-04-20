@@ -18,7 +18,7 @@ names.
 <a href='#' id='trigger-low'>low quality</a>
 <a href='#' id='trigger-high'>high quality</a>
 <script>
-var url = 'http://api.tiles.mapbox.com/v3/mapbox.blue-marble-topo-jul.jsonp';
+var url = 'https://api.tiles.mapbox.com/v3/mapbox.blue-marble-topo-jul.jsonp';
 
 wax.tilejson(url, function(tilejson) {
     var m = new MM.Map('map-div',

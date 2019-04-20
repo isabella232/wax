@@ -5,7 +5,7 @@ layout: control
 ---
 
 The Polymaps connector lets you quickly configure a MapBox map with
-[Polymaps](http://polymaps.org/).
+[Polymaps](https://polymaps.org/).
 
 This connector is a bit different than the others: since Polymaps
 does not configure per-layer min & max zoom levels, you'll need to
@@ -22,7 +22,7 @@ as in the example below, to prevent overzooming.
 <div id='map-div' class='demo-map'></div>
 
 <pre class='prettyprint live'>
-wax.tilejson('http://a.tiles.mapbox.com/v3/mapbox.blue-marble-topo-jul-bw.jsonp',
+wax.tilejson('https://a.tiles.mapbox.com/v3/mapbox.blue-marble-topo-jul-bw.jsonp',
   function(tilejson) {
   var po = org.polymaps;
   var map = po.map()

@@ -33,7 +33,7 @@ doc:
 
 ext:
 	-test ! -d ext && mkdir ext
-	wget --no-check-certificate http://openlayers.org/api/2.10/OpenLayers.js -O ext/OpenLayers.js
+	wget --no-check-certificate https://openlayers.org/api/2.10/OpenLayers.js -O ext/OpenLayers.js
 	wget --no-check-certificate https://raw.github.com/CloudMade/Leaflet/master/dist/leaflet.js -O ext/leaflet.js
 	wget --no-check-certificate https://raw.github.com/CloudMade/Leaflet/master/dist/leaflet.css -O ext/leaflet.css
 	wget --no-check-certificate https://raw.github.com/CloudMade/Leaflet/master/dist/leaflet.ie.css -O ext/leaflet.ie.css

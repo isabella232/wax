@@ -14,7 +14,7 @@ with Modest Maps easily.
 <pre class='prettyprint live'>
 var mm = com.modestmaps;
 
-wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.world-bright.jsonp',
+wax.tilejson('https://api.tiles.mapbox.com/v3/mapbox.world-bright.jsonp',
     function(tilejson) {
     var m = new mm.Map('map-div',
       new wax.mm.connector(tilejson));

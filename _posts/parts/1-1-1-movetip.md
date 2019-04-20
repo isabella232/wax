@@ -12,7 +12,7 @@ a fixed tooltip wouldn't work with scanning the map quickly.
 <div id='demo-movetip' class='demo-map'></div>
 
 <pre class='prettyprint live'>
-wax.tilejson('http://d.tiles.mapbox.com/v3/mapbox.world-blank-bright,' +
+wax.tilejson('https://d.tiles.mapbox.com/v3/mapbox.world-blank-bright,' +
   'usaid-horn.hoa-foodsecurity-sept-update-20110908_,hiu.lsib-dark-labelled,' +
   'usaid-horn.hoa-somalia-population-sept6,usaid-horn.refugees-points2.jsonp',
   function(tilejson) {

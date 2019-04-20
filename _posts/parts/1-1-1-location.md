@@ -14,7 +14,7 @@ that has the location formatter enabled, the page's URL will be set by
 `window.location.href = new_location`.
 
 <pre class='prettyprint'>
-wax.tilejson('http://d.tiles.mapbox.com/v3/mapbox.world-blank-bright,' +
+wax.tilejson('https://d.tiles.mapbox.com/v3/mapbox.world-blank-bright,' +
   'usaid-horn.hoa-foodsecurity-sept-update-20110908_,hiu.lsib-dark-labelled,' +
   'usaid-horn.hoa-somalia-population-sept6,usaid-horn.refugees-points2.jsonp',
   function(tilejson) {

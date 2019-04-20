@@ -6,7 +6,7 @@ layout: control
 
 A control that enables users to select a bounds on a map by holding the shift
 key and dragging on a map. It's useful for stuff like selecting areas to
-render in [TileMill](http://mapbox.com/tilemill) or areas to download for
+render in [TileMill](https://mapbox.com/tilemill) or areas to download for
 offline use.
 
 ## Example
@@ -14,7 +14,7 @@ offline use.
 <div id='map-div'></div>
 
 <pre class='prettyprint live'>
-var url = 'http://api.tiles.mapbox.com/v3/mapbox.blue-marble-topo-bathy-jul.jsonp';
+var url = 'https://api.tiles.mapbox.com/v3/mapbox.blue-marble-topo-bathy-jul.jsonp';
 wax.tilejson(url, function(tilejson) {
     var m = new MM.Map('map-div',
       new wax.mm.connector(tilejson));

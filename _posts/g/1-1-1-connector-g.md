@@ -5,11 +5,11 @@ layout: control
 ---
 
 The code in `wax.g.connector` helps you use Google Maps with tiles you generate with
-[TileMill](http://tilemill.com) and serve with
-[TileStream](http://mapbox.com/tilestream). It translates from [TileJSON](https://github.com/mapbox/tilejson)
+[TileMill](https://tilemill.com) and serve with
+[TileStream](https://mapbox.com/tilestream). It translates from [TileJSON](https://github.com/mapbox/tilejson)
 specification into the options you need to set up a layer for Google.
 
-- Include the Google Maps API V3 according to the [API documentation](http://code.google.com/apis/maps/documentation/javascript/tutorial.html#Loading_the_Maps_API).
+- Include the Google Maps API V3 according to the [API documentation](https://code.google.com/apis/maps/documentation/javascript/tutorial.html#Loading_the_Maps_API).
 - `wax/dist/wax.g.js` contains the Wax controls and integration code for
   Google Maps.
 - `wax/theme/controls.css` contains default styles for controls. You can always
@@ -36,7 +36,7 @@ the TileJSON format at `wax.g.connector`.
 <div id='map-div' class='demo-map'></div>
 
 <pre class='prettyprint live'>
-wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
+wax.tilejson('https://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
   function(tilejson) {
   var m = new google.maps.Map(
     document.getElementById('map-div'), {

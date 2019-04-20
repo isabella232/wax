@@ -39,7 +39,7 @@ _2.x.x_
 
 ```javascript
 var provider = new wax.mm.provider({
-    baseUrl: 'http://a.tiles.mapbox.com/mapbox/',
+    baseUrl: 'https://a.tiles.mapbox.com/mapbox/',
     layerName: 'natural-earth-2'});
 var map = ...;
 wax.mm.legend(map);
@@ -49,7 +49,7 @@ _3.x.x_
 
 ```javascript
 var connector = new wax.mm.connector({
-    tiles: 'http://a.tiles.mapbox.com/mapbox/1.0.0/natural-earth-2/{z}/{x}/{y}.png',
+    tiles: 'https://a.tiles.mapbox.com/mapbox/1.0.0/natural-earth-2/{z}/{x}/{y}.png',
     scheme: 'tms'
     });
 var map = ...;

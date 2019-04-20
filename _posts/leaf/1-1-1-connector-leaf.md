@@ -5,8 +5,8 @@ layout: control
 ---
 
 The Leaflet connector lets you quickly configure a MapBox map with
-[Leaflet](http://leaflet.cloudmade.com). You can also configure layers
-with the [TileLayer](http://leaflet.cloudmade.com/reference.html#tilelayer) class,
+[Leaflet](https://leaflet.cloudmade.com). You can also configure layers
+with the [TileLayer](https://leaflet.cloudmade.com/reference.html#tilelayer) class,
 but using the connector also automatically configures attribution,
 zoom levels, and tile URLs.
 
@@ -21,7 +21,7 @@ zoom levels, and tile URLs.
 <div id='map-div' class='demo-map'></div>
 
 <pre class='prettyprint live'>
-wax.tilejson('http://api.tiles.mapbox.com/v2/mapbox.geography-class.jsonp',
+wax.tilejson('https://api.tiles.mapbox.com/v2/mapbox.geography-class.jsonp',
   function(tilejson) {
     var map = new L.Map('map-div')
       .addLayer(new wax.leaf.connector(tilejson))

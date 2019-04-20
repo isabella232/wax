@@ -6,7 +6,7 @@ layout: control
 
 **Wax makes typical maps a lot easier to make.** So, it provides zoom controls
 and other stuff that people already expect, and it has a lot of code that
-hooks up with [TileStream](http://mapbox.com/tilestream).
+hooks up with [TileStream](https://mapbox.com/tilestream).
 
 But that's not everything - _there are crazier, potentially interesting things
 that Wax doesn't do_, and that you might want to do. Thus, this is a document
@@ -18,7 +18,7 @@ What makes Wax Wax:
 ## Dependencies
 
 Minimize dependencies. When tempted to include a library like
-[jQuery](http://jquery.org), think hard about whether you actually need it:
+[jQuery](https://jquery.org), think hard about whether you actually need it:
 operations like setting style attributes of elements, adding classes,
 binding events, and lots more you can do with minimal library intervention.
 
@@ -40,7 +40,7 @@ Use these tools, at least.
   yells at you for writing dangerous, incorrect, or unstable
   code.
 
-* [jasmine](http://pivotal.github.com/jasmine/): You write tests that make
+* [jasmine](https://pivotal.github.com/jasmine/): You write tests that make
   sure your code does things in reaction to user
   interaction, and you can run them in a lot of browsers to make sure they work,
   always.
@@ -95,9 +95,9 @@ The `min` version is baked using uglify-js (see above).
 
 ### package.json
 
-Provide a `package.json` file [like CommonJS](http://www.commonjs.org/)
+Provide a `package.json` file [like CommonJS](https://www.commonjs.org/)
 or at least like [npm wants](https://github.com/isaacs/npm/blob/master/doc/json.md).
-This lets advanced users developing apps with [nodejs](http://nodejs.org) pull in
+This lets advanced users developing apps with [nodejs](https://nodejs.org) pull in
 your project nicely and with versions. If you really want to level up,
 publish the package to npm.
 
@@ -107,7 +107,7 @@ publish the package to npm.
 documentation for-real. Here's the Wax style:
 
 * branch for `gh-pages` and wipe out your source tree.
-* use [jekyll](http://jekyllrb.com) to manage your documentation
+* use [jekyll](https://jekyllrb.com) to manage your documentation
 * tag documentation pages with compatibilities
 * when documentating Javascript with examples, include the necessary
   HTML bootstrap in the example code.

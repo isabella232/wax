@@ -14,7 +14,7 @@ and then you can add it to a map by chaining `.appendTo(map.parent)`.
 <pre class='prettyprint live'>
 var mm = com.modestmaps;
 wax.tilejson(
-  'http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
+  'https://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
   function(tilejson) {
     var m = new mm.Map('map-div',
       new wax.mm.connector(tilejson));

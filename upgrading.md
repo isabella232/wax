@@ -5,7 +5,7 @@ title: Upgrading from Earlier Version
 
 Wax has changed - it's now at version 6. The API was the same
 from version 4 to 5 - though they had an upgrade in the
-[Modest Maps](http://modestmaps.com/) dependency.
+[Modest Maps](https://modestmaps.com/) dependency.
 
 It changes at 6. Here's a rundown:
 
@@ -37,7 +37,7 @@ see [the page on tooltips](/wax/tooltips.html) for more details.
 
 ## Modest Maps 1
 
-Wax v6 is compatible with, and embraces the first major release of [Modest Maps](http://modestmaps.com/).
+Wax v6 is compatible with, and embraces the first major release of [Modest Maps](https://modestmaps.com/).
 The big change in the new version is that Modest Maps now supports
 _multiple layers_. For the most part, you can use it just like before, but one
 common thing that you do with a map is replacing the main layer - and that has changed.

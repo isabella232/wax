@@ -5,7 +5,7 @@ layout: control
 ---
 
 You can add über-fast interactivity to maps made with
-[TileMill](http://tilemill.com/).
+[TileMill](https://tilemill.com/).
 
 <pre class='prettyprint'>
 &lt;html&gt;
@@ -29,7 +29,7 @@ the TileJSON format at `wax.g.connector`.
 <div id='map-div' class='demo-map'></div>
 
 <pre class='prettyprint live'>
-var url = 'http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp';
+var url = 'https://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp';
 
 wax.tilejson(url, function(tilejson) {
   var m = new google.maps.Map(
