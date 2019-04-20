@@ -143,4 +143,4 @@ named, and optionally a lot more, like available zoom levels and legends.
 Down the line, TileJSON will make your life a lot easier by letting you
 skip a lot of steps of configuring maps, but we'll explain it in detail first.
 
-[Continue reading about TileJSON](/wax/tilejson.html).
+[Continue reading about TileJSON](/wax/parts/tilejson.html).
