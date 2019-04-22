@@ -1,6 +1,6 @@
 ---
 title: Interaction
-tags: Google
+tags: [Google Maps]
 layout: control
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: HTML Sanitization
-tags: parts
+tags: Parts
 layout: control
 ---
 

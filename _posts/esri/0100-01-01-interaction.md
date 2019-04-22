@@ -1,6 +1,6 @@
 ---
 title: Interaction
-tags: esri touch
+tags: Esri Touch
 layout: control
 ---
 

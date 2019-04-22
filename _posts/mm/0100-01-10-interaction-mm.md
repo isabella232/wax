@@ -1,6 +1,6 @@
 ---
 title: Interaction
-tags: ModestMaps touch
+tags: ModestMaps Touch
 layout: control
 ---
 

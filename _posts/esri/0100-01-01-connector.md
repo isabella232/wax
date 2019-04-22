@@ -1,6 +1,6 @@
 ---
 title: Connector
-tags: esri touch
+tags: Esri Touch
 layout: control
 ---
 

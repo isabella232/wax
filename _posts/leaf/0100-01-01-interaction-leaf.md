@@ -1,17 +1,14 @@
 ---
-title: Interaction with Native Popups
-tags: Leaflet touch
+title: Interaction
+tags: Leaflet Touch
 layout: control
 ---
 
-With Wax v6, you can use native Leaflet popups with UTFGrid interactivity:
+You can add über-fast interactivity to maps made with
+[TileMill](https://tilemill.com/).
 
 The interaction control lets you do whatever you want with the interactivity
 it provides - see [the documentation on tooltips and its API for the full story.](/wax/tooltips.html)
-
-This is an example of using native [Leaflet](https://leaflet.cloudmade.com/) popups with
-a [MapBox](https://mapbox.com/) map - when you get an `on` event that looks like a
-click, create a [Leaflet popup](https://leaflet.cloudmade.com/reference.html#popup).
 
 <div class='demo-map' id='map-div'></div>
 
@@ -36,15 +33,6 @@ wax.tilejson('https://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
   wax.leaf.interaction()
     .map(map)
     .tilejson(tilejson)
-    .on('on', function(o) {
-        if (o.e.type !== 'mousemove') {
-            // create a marker in the given location and add it to the map
-            var marker = new L.Marker(map.mouseEventToLatLng(o.e));
-            map.addLayer(marker);
-
-            // attach a given HTML content to the marker and immediately open it
-            marker.bindPopup(o.formatter({ format: 'teaser' }, o.data)).openPopup();
-        }
-    });
+    .on(wax.tooltip().animate(true).parent(map._container).events());
 });
 </pre>

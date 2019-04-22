@@ -3,18 +3,16 @@ layout: default
 title: Wax
 ---
 
-**MapBox has introduced [MapBox.js v1](https://www.mapbox.com/mapbox.js/), which features
-improved browser support, documentation, and access to a rich ecosystem of
-[Leaflet](https://leafletjs.com/) plugins.**
+[MapBox](https://www.mapbox.com/) has introduced [MapBox.js v1](https://www.mapbox.com/mapbox.js/), which features improved browser support, documentation, and access to a rich ecosystem of
+[Leaflet](https://leafletjs.com/) plugins.  You might want to consider using it for any new projects.
 
-<a class='big-download' href='https://github.com/tilemill-project/wax/zipball/v6.4.0'>↓ Download Wax 6.4.0
-<span>BSD-licensed, ~16KB</span>
-</a>
-
-Already using Wax, and need to upgrade? [Read the bit about upgrading](/wax/upgrading.html)
+This version of Wax has been customized to work with additional functionality added to TileMill, mainly around enhancing the bounding box when Exporting a static map.
 
 If you're just starting out, follow along and by the end, you'll be a
 web-mapping pro.
+
+## Wax in Action ##
+Here is a map demo of Wax showing the world, with a Country and Map popup when you hover over a country.
 
 <div id='intro-map' class='map-demo'></div>
 

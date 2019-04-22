@@ -1,6 +1,6 @@
 ---
 title: Connector
-tags: Google
+tags: [Google Maps]
 layout: control
 ---
 
