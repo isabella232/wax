@@ -10,8 +10,8 @@ This is a fork to work specifically with TileMill v1.x.
 
 There are three current development branches of Wax:
 
-* `master` is 7.x and is not stable
-* 6.4.x works with TileMill v1.x
+* `master` is 6.4.x and works with TileMill v1.x
+* 7.x is not stable and is abandoned.
 * 5.x supports **Modest Maps 1.0.0-alpha2 and later**, but supports the same API as 4.x
 * 4.x supports **Modest Maps 0.x**, older versions of Modest Maps
 
