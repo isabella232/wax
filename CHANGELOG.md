@@ -1,5 +1,11 @@
 ## Changelog
 
+## 6.4.3
+
+* Updated `wax.mm.boxselector()` to allow constraining the box by an aspect ratio
+  * allow the bounding box to be dragged by its center
+  * added `boxselector.distances()` function to calculate accurate distances between 2 locations
+
 ## 6.4.2
 
 * Binds `wax.mm.zoomer()` controls to `touchstart` events to make
