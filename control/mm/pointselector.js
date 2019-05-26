@@ -12,6 +12,11 @@ wax.mm = wax.mm || {};
 // It also exposes a public API function: `addLocation`, which adds a point
 // to the map as if added by the user.
 wax.mm.pointselector = function(map, tilejson, opts) {
+    // Set this to true if you want all of the boxselector functions to write to the 
+    // console when they execute.
+    var logFunctions = false;
+    if (logFunctions) { console.log("pointselector.initializeing..."); }
+
     var mouseDownPoint = null,
         mouseUpPoint = null,
         tolerance = 5,
@@ -25,6 +30,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
 
     // Create a `com.modestmaps.Point` from a screen event, like a click.
     function makePoint(e) {
+        if (logFunctions) { console.log("pointselector.makePoint..."); }
+
         var coords = wax.u.eventoffset(e);
         var point = new MM.Point(coords.x, coords.y);
         // correct for scrolled document
@@ -51,6 +58,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // These can't be JSON encoded, so here's a utility to clean the data that's
     // spit back.
     function cleanLocations(locations) {
+        if (logFunctions) { console.log("pointselector.cleanlocations..."); }
+
         var o = [];
         for (var i = 0; i < locations.length; i++) {
             o.push(new MM.Location(locations[i].lat, locations[i].lon));
@@ -64,6 +73,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // Redraw the points when the map is moved, so that they stay in the
     // correct geographic locations.
     function drawPoints() {
+        if (logFunctions) { console.log("pointselector.drawpoints..."); }
+
         var offset = new MM.Point(0, 0);
         for (var i = 0; i < locations.length; i++) {
             var point = map.locationPoint(locations[i]);
@@ -91,14 +102,29 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     }
 
     function mouseDown(e) {
+        if (logFunctions) { console.log("pointselector.mouseDown..."); }
+
         mouseDownPoint = makePoint(e);
-        bean.add(map.parent, 'mouseup', mouseUp);
     }
 
     // Remove the awful circular reference from locations.
     // TODO: This function should be made unnecessary by not having it.
     function mouseUp(e) {
-        if (!mouseDownPoint) return;
+        if (logFunctions) { console.log("pointselector.mouseUp..."); }
+
+        if (!mouseDownPoint) {
+            // HACK1: If the mouseDown was not called (because the clicked inside of a 
+            // boxselector box which cancelled event propagation), then use the global
+            // copy of the click location as the mouseDownPoint. Search for "HACK1" in 
+            // boxselector and pointselector for the rest of the story.
+            if (globalMouseDownPoint) {
+                mouseDownPoint = globalMouseDownPoint;
+                globalMouseDownPoint = null;
+            }
+            else {
+                return;
+            }
+        }
         mouseUpPoint = makePoint(e);
         if (MM.Point.distance(mouseDownPoint, mouseUpPoint) < tolerance) {
             pointselector.addLocation(map.pointLocation(mouseDownPoint));
@@ -111,6 +137,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // calls the callback for ever point added, so it can be symmetrical.
     // Useful for initializing the map when it's a part of a form.
     pointselector.addLocation = function(location) {
+        if (logFunctions) { console.log("pointselector.addLocation..."); }
+
         locations.push(location);
         drawPoints();
         callback(cleanLocations(locations));
@@ -121,12 +149,21 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     };
 
     pointselector.add = function(map) {
+        if (logFunctions) { console.log("pointselector.add..."); }
+
         bean.add(map.parent, 'mousedown', mouseDown);
+        // HACK1: Adding mouseup handler here rather than in mousedown so that if 
+        // mousedown is skipped due to boxselector cancelling event propagation, then 
+        // mouseup will still be called. Search for "HACK1" in boxselector and 
+        // pointselector for the rest of the story.
+        bean.add(map.parent, 'mouseup', mouseUp);
         map.addCallback('drawn', drawPoints);
         return this;
     };
 
     pointselector.remove = function(map) {
+        if (logFunctions) { console.log("pointselector.remove..."); }
+
         bean.remove(map.parent, 'mousedown', mouseDown);
         map.removeCallback('drawn', drawPoints);
         for (var i = locations.length - 1; i > -1; i--) {
@@ -136,6 +173,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     };
 
     pointselector.deleteLocation = function(location, e) {
+        if (logFunctions) { console.log("pointselector.deleteLocation..."); }
+
         if (!e || confirm('Delete this point?')) {
             location.pointDiv.parentNode.removeChild(location.pointDiv);
             locations.splice(wax.u.indexOf(locations, location), 1);
