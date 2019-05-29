@@ -1,5 +1,9 @@
 ## Changelog
 
+## 6.4.4
+
+* Updated `wax.mm.boxselector and wax.mm.pointselector` to fix a bug introduced when boxselector was changed to support dragging the box to a new position. When this was done, clicking inside the box no longer processed pointselector changes anymore.
+
 ## 6.4.3
 
 * Updated `wax.mm.boxselector()` to allow constraining the box by an aspect ratio

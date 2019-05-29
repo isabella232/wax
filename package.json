@@ -1,6 +1,6 @@
 {
     "name": "wax",
-    "version": "6.4.3",
+    "version": "6.4.4",
     "description": "Tools for improving web maps.",
     "repository": {
         "type": "git",
@@ -11,11 +11,13 @@
         "url": "http://mapbox.com/",
         "email": "info@mapbox.com"
     },
-    "homepage": "http://mapbox.github.com/wax/",
+    "homepage": "https://github.com/tilemill-project/wax",
     "contributors": [
         "Tom MacWright <macwright@gmail.com>",
         "Young Hahn <young@developmentseed.org>",
-        "Will White <will@developmentseed.org>"
+        "Will White <will@developmentseed.org>",
+        "Cory Sytsma <csytsma>",
+        "Tim Potter <tpotter>"
     ],
     "licenses": [
         {

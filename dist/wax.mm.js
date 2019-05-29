@@ -1,4 +1,4 @@
-/* wax - 6.4.3 - v6.0.4-32-g6bfa87a */
+/* wax - 6.4.4 - v6.0.4-38-ga139dae */
 
 
 !function (name, context, definition) {
@@ -3242,7 +3242,10 @@ wax = wax || {};
 wax.mm = wax.mm || {};
 
 wax.mm.boxselector = function(map, tilejson, opts) {
-    //console.log("Initializing Box Selector...");
+    // Set this to true if you want all of the boxselector functions to write to the 
+    // console when they execute.
+    var logFunctions = false;
+    if (logFunctions) { console.log("boxselector.initializing..."); }
 
     var callback = ((typeof opts === 'function') ? opts : opts.callback),
         boxDiv,
@@ -3281,7 +3284,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
         boxselector = {};
 
     function getMousePoint(e) {
-        //console.log("getMousePoint...");
+        //if (logFunctions) { console.log("boxselector.getMousePoint..."); }
 
         // start with just the mouse (x, y)
         var point = new MM.Point(e.clientX, e.clientY);
@@ -3299,7 +3302,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // Figure out if the point is on any box edges and return edge which edges it is on.
     function whichBoxEdges(point) {
-        //console.log("whichBoxEdges...");
+        if (logFunctions) { console.log("boxselector.whichBoxEdges..."); }
 
         // Calculate the top/left offset values for each side of the box.
         var west  = parseInt(boxDiv.offsetLeft, 10),
@@ -3327,7 +3330,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // Figure out if the point is on any box edges and return edge which edges it is on.
     function whichBoxEdgesBasedOnClosestCorner(point) {
-        //console.log("whichBoxEdgesBasedOnClosestCorner...");
+        if (logFunctions) { console.log("boxselector.whichBoxEdgesBasedOnClosestCorner..."); }
 
         // Calculate the top/left offset values for each side of the box.
         var west  = parseInt(boxDiv.offsetLeft, 10),
@@ -3348,7 +3351,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // Figure out if the point is inside the box and not near the edges.
     function insideBox(point) {
-        //console.log("insideBox...");
+        //if (logFunctions) { console.log("boxselector.insideBox..."); }
 
         // If we are between mouseDown and mouseUp, we may have already figured this out. 
         // If we did and we are inside the box, no point in checking again.
@@ -3371,7 +3374,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // Figure out if the point is outside the box and not near the edges.
     function outsideBox(point) {
-        //console.log("outsideBox...");
+        //if (logFunctions) { console.log("boxselector.outsideBox..."); }
 
         // If we are between mouseDown and mouseUp, we may have already figured this out. 
         // If we did and we are inside the box, no point in checking again.
@@ -3394,7 +3397,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // See if the aspect ratio is locked.
     function aspectLocked() {
-        //console.log("aspectLocked...");
+        if (logFunctions) { console.log("boxselector.aspectLocked..."); }
 
         //timtim TODO: Create an abstraction to remove the dependency on the client.
         return (document.getElementsByName('setaspect').item(0).checked);
@@ -3402,7 +3405,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // If the aspect ratio is locked, then return the aspect ratio.
     function aspectRatio() {
-        //console.log("aspectRatio...");
+        if (logFunctions) { console.log("boxselector.aspectRatio..."); }
 
         //timtim TODO: Create an abstraction to remove the dependency on the client.
         if (aspectLocked()) {
@@ -3424,7 +3427,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // Prepare for doing a normal resize of a box.
     function prepForResize(point) {
-        //console.log("prepForResize...");
+        if (logFunctions) { console.log("boxselector.prepForResize..."); }
 
         // Calculate the top/left offset values for each side of the box.
         boxWest  = parseInt(boxDiv.offsetLeft, 10);
@@ -3468,7 +3471,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // User clicked somewhere.
     function mouseDown(e) {
-        //console.log("mouseDown...");
+        if (logFunctions) { console.log("boxselector.mouseDown..."); }
 
         mouseDownPoint = getMousePoint(e); // Get the current mouse pointer location.
 
@@ -3511,19 +3514,19 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // User clicked outside of the box on the map.
     function mouseDownMap(e) {
-        //console.log("mouseDownMap...");
+        if (logFunctions) { console.log("boxselector.mouseDownMap..."); }
         return mouseDown(e);
     }
 
     // User clicked inside of the box on the map.
     function mouseDownBox(e) {
-        //console.log("mouseDownBox...");
+        if (logFunctions) { console.log("boxselector.mouseDownBox..."); }
         return mouseDown(e);
     }
 
     // When mouse is down, and resizing box...
     function mouseMove(e) {
-        //console.log("mouseMove...");
+        if (logFunctions) { console.log("boxselector.mouseMove..."); }
 
         // Get the current mouse pointer location.
         var point = getMousePoint(e);
@@ -3638,7 +3641,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
     }
 
     function mouseUp(e) {
-        //console.log("mouseUp...");
+        if (logFunctions) { console.log("boxselector.mouseUp..."); }
 
         var point = getMousePoint(e);
 
@@ -3674,13 +3677,13 @@ wax.mm.boxselector = function(map, tilejson, opts) {
     }
 
     function mouseMoveCursor(e) {
-        //console.log("mouseMoveCursor...");
+        //if (logFunctions) { console.log("boxselector.mouseMoveCursor..."); }
         changeCursor(getMousePoint(e), boxDiv);
     }
 
     // Set resize cursor if mouse is on edge
     function changeCursor(point, elem) {
-        //console.log("changeCursor...");
+        //if (logFunctions) { console.log("boxselector.changeCursor..."); }
 
         // If the cursor is outside of the box let the default cursor handling take care of it.
         if (outsideBox(point)) return;
@@ -3721,7 +3724,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
     }
 
     function drawbox(map, e) {
-        //console.log("drawbox...");
+        //if (logFunctions) { console.log("boxselector.drawbox..."); }
 
         if (!boxDiv || !box) return;
         var br = map.locationPoint(box[1]),
@@ -3740,7 +3743,8 @@ wax.mm.boxselector = function(map, tilejson, opts) {
     }
 
     boxselector.extent = function(x, silent) {
-        //console.log("boxselector.extent...");
+        //if (logFunctions) { console.log("boxselector.extent..."); }
+
         if (!x) return box;
 
         box = [
@@ -3758,7 +3762,15 @@ wax.mm.boxselector = function(map, tilejson, opts) {
         if (!silent) callback(box);
     };
 
+    boxselector.getboxdiv = function()
+    {
+        //if (logFunctions) { console.log("boxselector.getboxdiv..."); }
+        return boxDiv;
+    }
+
     boxselector.add = function(map) {
+        if (logFunctions) { console.log("boxselector.add..."); }
+
         boxDiv = boxDiv || document.createElement('div');
         boxDiv.id = map.parent.id + '-boxselector-box';
         boxDiv.className = 'boxselector-box';
@@ -3774,6 +3786,8 @@ wax.mm.boxselector = function(map, tilejson, opts) {
     };
 
     boxselector.remove = function() {
+        if (logFunctions) { console.log("boxselector.remove..."); }
+
         map.parent.removeChild(boxDiv);
         removeEvent(map.parent, 'mousedown', mouseDownMap);
         removeEvent(boxDiv, 'mousedown', mouseDownBox);
@@ -4011,7 +4025,6 @@ wax.mm.latlngtooltip = function(map) {
     }
 
     function onDown(e) {
-        console.log('here');
         _down = true;
     }
 
@@ -4103,6 +4116,11 @@ wax.mm = wax.mm || {};
 // It also exposes a public API function: `addLocation`, which adds a point
 // to the map as if added by the user.
 wax.mm.pointselector = function(map, tilejson, opts) {
+    // Set this to true if you want all of the boxselector functions to write to the 
+    // console when they execute.
+    var logFunctions = false;
+    if (logFunctions) { console.log("pointselector.initializeing..."); }
+
     var mouseDownPoint = null,
         mouseUpPoint = null,
         tolerance = 5,
@@ -4116,6 +4134,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
 
     // Create a `com.modestmaps.Point` from a screen event, like a click.
     function makePoint(e) {
+        //if (logFunctions) { console.log("pointselector.makePoint..."); }
+
         var coords = wax.u.eventoffset(e);
         var point = new MM.Point(coords.x, coords.y);
         // correct for scrolled document
@@ -4142,6 +4162,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // These can't be JSON encoded, so here's a utility to clean the data that's
     // spit back.
     function cleanLocations(locations) {
+        if (logFunctions) { console.log("pointselector.cleanlocations..."); }
+
         var o = [];
         for (var i = 0; i < locations.length; i++) {
             o.push(new MM.Location(locations[i].lat, locations[i].lon));
@@ -4155,6 +4177,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // Redraw the points when the map is moved, so that they stay in the
     // correct geographic locations.
     function drawPoints() {
+        //if (logFunctions) { console.log("pointselector.drawpoints..."); }
+
         var offset = new MM.Point(0, 0);
         for (var i = 0; i < locations.length; i++) {
             var point = map.locationPoint(locations[i]);
@@ -4182,6 +4206,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     }
 
     function mouseDown(e) {
+        if (logFunctions) { console.log("pointselector.mouseDown..."); }
+
         mouseDownPoint = makePoint(e);
         bean.add(map.parent, 'mouseup', mouseUp);
     }
@@ -4189,6 +4215,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // Remove the awful circular reference from locations.
     // TODO: This function should be made unnecessary by not having it.
     function mouseUp(e) {
+        if (logFunctions) { console.log("pointselector.mouseUp..."); }
+
         if (!mouseDownPoint) return;
         mouseUpPoint = makePoint(e);
         if (MM.Point.distance(mouseDownPoint, mouseUpPoint) < tolerance) {
@@ -4198,10 +4226,26 @@ wax.mm.pointselector = function(map, tilejson, opts) {
         mouseDownPoint = null;
     }
 
+    // In the case where a boxselector and pointselector are both being used, this function
+    // can be called to ensure that the pointselector will run successfully when the user
+    // clicks inside of the box by registering the pointselector mouseDown on the boxDiv element.
+    // If this is not done, then the pointselector mouseDown will not be called when the user
+    // clicks inside of the box since boxselector has to cancel event propagation after its
+    // mouseDown is called.
+    pointselector.addBoxselector = function(aBoxselector) {
+        if (logFunctions) { console.log("pointselector.addBoxselector..."); }
+
+        if (boxDiv = aBoxselector.getboxdiv()) {
+            MM.addEvent(boxDiv, 'mousedown', mouseDown);
+        }
+    }
+
     // API for programmatically adding points to the map - this
-    // calls the callback for ever point added, so it can be symmetrical.
+    // calls the callback for every point added, so it can be symmetrical.
     // Useful for initializing the map when it's a part of a form.
     pointselector.addLocation = function(location) {
+        if (logFunctions) { console.log("pointselector.addLocation..."); }
+
         locations.push(location);
         drawPoints();
         callback(cleanLocations(locations));
@@ -4212,12 +4256,16 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     };
 
     pointselector.add = function(map) {
+        if (logFunctions) { console.log("pointselector.add..."); }
+
         bean.add(map.parent, 'mousedown', mouseDown);
         map.addCallback('drawn', drawPoints);
         return this;
     };
 
     pointselector.remove = function(map) {
+        if (logFunctions) { console.log("pointselector.remove..."); }
+
         bean.remove(map.parent, 'mousedown', mouseDown);
         map.removeCallback('drawn', drawPoints);
         for (var i = locations.length - 1; i > -1; i--) {
@@ -4227,6 +4275,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     };
 
     pointselector.deleteLocation = function(location, e) {
+        if (logFunctions) { console.log("pointselector.deleteLocation..."); }
+
         if (!e || confirm('Delete this point?')) {
             location.pointDiv.parentNode.removeChild(location.pointDiv);
             locations.splice(wax.u.indexOf(locations, location), 1);

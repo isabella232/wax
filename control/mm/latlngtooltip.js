@@ -26,7 +26,6 @@ wax.mm.latlngtooltip = function(map) {
     }
 
     function onDown(e) {
-        console.log('here');
         _down = true;
     }
 

@@ -12,6 +12,11 @@ wax.mm = wax.mm || {};
 // It also exposes a public API function: `addLocation`, which adds a point
 // to the map as if added by the user.
 wax.mm.pointselector = function(map, tilejson, opts) {
+    // Set this to true if you want all of the boxselector functions to write to the 
+    // console when they execute.
+    var logFunctions = false;
+    if (logFunctions) { console.log("pointselector.initializeing..."); }
+
     var mouseDownPoint = null,
         mouseUpPoint = null,
         tolerance = 5,
@@ -25,6 +30,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
 
     // Create a `com.modestmaps.Point` from a screen event, like a click.
     function makePoint(e) {
+        //if (logFunctions) { console.log("pointselector.makePoint..."); }
+
         var coords = wax.u.eventoffset(e);
         var point = new MM.Point(coords.x, coords.y);
         // correct for scrolled document
@@ -51,6 +58,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // These can't be JSON encoded, so here's a utility to clean the data that's
     // spit back.
     function cleanLocations(locations) {
+        if (logFunctions) { console.log("pointselector.cleanlocations..."); }
+
         var o = [];
         for (var i = 0; i < locations.length; i++) {
             o.push(new MM.Location(locations[i].lat, locations[i].lon));
@@ -64,6 +73,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // Redraw the points when the map is moved, so that they stay in the
     // correct geographic locations.
     function drawPoints() {
+        //if (logFunctions) { console.log("pointselector.drawpoints..."); }
+
         var offset = new MM.Point(0, 0);
         for (var i = 0; i < locations.length; i++) {
             var point = map.locationPoint(locations[i]);
@@ -91,6 +102,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     }
 
     function mouseDown(e) {
+        if (logFunctions) { console.log("pointselector.mouseDown..."); }
+
         mouseDownPoint = makePoint(e);
         bean.add(map.parent, 'mouseup', mouseUp);
     }
@@ -98,6 +111,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // Remove the awful circular reference from locations.
     // TODO: This function should be made unnecessary by not having it.
     function mouseUp(e) {
+        if (logFunctions) { console.log("pointselector.mouseUp..."); }
+
         if (!mouseDownPoint) return;
         mouseUpPoint = makePoint(e);
         if (MM.Point.distance(mouseDownPoint, mouseUpPoint) < tolerance) {
@@ -107,10 +122,26 @@ wax.mm.pointselector = function(map, tilejson, opts) {
         mouseDownPoint = null;
     }
 
+    // In the case where a boxselector and pointselector are both being used, this function
+    // can be called to ensure that the pointselector will run successfully when the user
+    // clicks inside of the box by registering the pointselector mouseDown on the boxDiv element.
+    // If this is not done, then the pointselector mouseDown will not be called when the user
+    // clicks inside of the box since boxselector has to cancel event propagation after its
+    // mouseDown is called.
+    pointselector.addBoxselector = function(aBoxselector) {
+        if (logFunctions) { console.log("pointselector.addBoxselector..."); }
+
+        if (boxDiv = aBoxselector.getboxdiv()) {
+            MM.addEvent(boxDiv, 'mousedown', mouseDown);
+        }
+    }
+
     // API for programmatically adding points to the map - this
-    // calls the callback for ever point added, so it can be symmetrical.
+    // calls the callback for every point added, so it can be symmetrical.
     // Useful for initializing the map when it's a part of a form.
     pointselector.addLocation = function(location) {
+        if (logFunctions) { console.log("pointselector.addLocation..."); }
+
         locations.push(location);
         drawPoints();
         callback(cleanLocations(locations));
@@ -121,12 +152,16 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     };
 
     pointselector.add = function(map) {
+        if (logFunctions) { console.log("pointselector.add..."); }
+
         bean.add(map.parent, 'mousedown', mouseDown);
         map.addCallback('drawn', drawPoints);
         return this;
     };
 
     pointselector.remove = function(map) {
+        if (logFunctions) { console.log("pointselector.remove..."); }
+
         bean.remove(map.parent, 'mousedown', mouseDown);
         map.removeCallback('drawn', drawPoints);
         for (var i = locations.length - 1; i > -1; i--) {
@@ -136,6 +171,8 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     };
 
     pointselector.deleteLocation = function(location, e) {
+        if (logFunctions) { console.log("pointselector.deleteLocation..."); }
+
         if (!e || confirm('Delete this point?')) {
             location.pointDiv.parentNode.removeChild(location.pointDiv);
             locations.splice(wax.u.indexOf(locations, location), 1);
