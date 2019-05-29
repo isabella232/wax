@@ -1,4 +1,4 @@
-/* wax - 6.4.4 - v6.0.4-36-gafc5b21 */
+/* wax - 6.4.4 - v6.0.4-38-ga139dae */
 
 
 !function (name, context, definition) {
@@ -3241,22 +3241,6 @@ wax.mm.attribution = function(map, tilejson) {
 wax = wax || {};
 wax.mm = wax.mm || {};
 
-// HACK1: Had a problem where boxselector mousedown was cancelling events if you 
-// clicked inside the box. This meant that pointselector mousedown was not getting 
-// called and was therefore not saving pointselector.mouseDownPoint. This effectively 
-// made pointselector non-functional when trying to select a point inside of a 
-// boxselector box. The ideal solution would be to allow mousedown to propagate so 
-// that pointselector mousedown gets called. Unfortunately, when the mouse later 
-// moves, then both the boxselector.mouseMove is called (moving the box) and the 
-// metamaps.DragHandler.mouseMove is called (moving the map). cancelEvent does not 
-// seem to stop propagation to the mouseMove event on the document (don't know why). 
-// So, as a hack, I save this globalMouseDownPoint in boxselector when you click 
-// inside the box and then in pointselector.mouseUp, if pointselector.mouseDownPoint 
-// was never set in pointselector.mouseDown, then I use the value that was saved in 
-// this global variable. Search for "HACK1" in boxselector and pointselector for the 
-// rest of the story.
-var globalMouseDownPoint = null;
-
 wax.mm.boxselector = function(map, tilejson, opts) {
     // Set this to true if you want all of the boxselector functions to write to the 
     // console when they execute.
@@ -3300,7 +3284,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
         boxselector = {};
 
     function getMousePoint(e) {
-        if (logFunctions) { console.log("boxselector.getMousePoint..."); }
+        //if (logFunctions) { console.log("boxselector.getMousePoint..."); }
 
         // start with just the mouse (x, y)
         var point = new MM.Point(e.clientX, e.clientY);
@@ -3367,7 +3351,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // Figure out if the point is inside the box and not near the edges.
     function insideBox(point) {
-        if (logFunctions) { console.log("boxselector.insideBox..."); }
+        //if (logFunctions) { console.log("boxselector.insideBox..."); }
 
         // If we are between mouseDown and mouseUp, we may have already figured this out. 
         // If we did and we are inside the box, no point in checking again.
@@ -3390,7 +3374,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // Figure out if the point is outside the box and not near the edges.
     function outsideBox(point) {
-        if (logFunctions) { console.log("boxselector.outsideBox..."); }
+        //if (logFunctions) { console.log("boxselector.outsideBox..."); }
 
         // If we are between mouseDown and mouseUp, we may have already figured this out. 
         // If we did and we are inside the box, no point in checking again.
@@ -3516,10 +3500,6 @@ wax.mm.boxselector = function(map, tilejson, opts) {
             else if (insideBox(mouseDownPoint)) {
                 // User clicked inside the box and wants to move the box.
                 clickedInsideBox = true;
-                // HACK1: Saving the point where the user clicked into a global variable
-                // so that it can be used in pointselector.mouseUp later. Search for "HACK1" 
-                // in boxselector and pointselector for the rest of the story.
-                globalMouseDownPoint = mouseDownPoint;
             }
             else { // User clicked outside of the box and wants to move the map.
                 // Return without cancelling events since map move handling is in another event.
@@ -3744,7 +3724,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
     }
 
     function drawbox(map, e) {
-        if (logFunctions) { console.log("boxselector.drawbox..."); }
+        //if (logFunctions) { console.log("boxselector.drawbox..."); }
 
         if (!boxDiv || !box) return;
         var br = map.locationPoint(box[1]),
@@ -3763,7 +3743,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
     }
 
     boxselector.extent = function(x, silent) {
-        if (logFunctions) { console.log("boxselector.extent..."); }
+        //if (logFunctions) { console.log("boxselector.extent..."); }
 
         if (!x) return box;
 
@@ -3781,6 +3761,12 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
         if (!silent) callback(box);
     };
+
+    boxselector.getboxdiv = function()
+    {
+        //if (logFunctions) { console.log("boxselector.getboxdiv..."); }
+        return boxDiv;
+    }
 
     boxselector.add = function(map) {
         if (logFunctions) { console.log("boxselector.add..."); }
@@ -4148,7 +4134,7 @@ wax.mm.pointselector = function(map, tilejson, opts) {
 
     // Create a `com.modestmaps.Point` from a screen event, like a click.
     function makePoint(e) {
-        if (logFunctions) { console.log("pointselector.makePoint..."); }
+        //if (logFunctions) { console.log("pointselector.makePoint..."); }
 
         var coords = wax.u.eventoffset(e);
         var point = new MM.Point(coords.x, coords.y);
@@ -4191,7 +4177,7 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // Redraw the points when the map is moved, so that they stay in the
     // correct geographic locations.
     function drawPoints() {
-        if (logFunctions) { console.log("pointselector.drawpoints..."); }
+        //if (logFunctions) { console.log("pointselector.drawpoints..."); }
 
         var offset = new MM.Point(0, 0);
         for (var i = 0; i < locations.length; i++) {
@@ -4223,6 +4209,7 @@ wax.mm.pointselector = function(map, tilejson, opts) {
         if (logFunctions) { console.log("pointselector.mouseDown..."); }
 
         mouseDownPoint = makePoint(e);
+        bean.add(map.parent, 'mouseup', mouseUp);
     }
 
     // Remove the awful circular reference from locations.
@@ -4230,19 +4217,7 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     function mouseUp(e) {
         if (logFunctions) { console.log("pointselector.mouseUp..."); }
 
-        if (!mouseDownPoint) {
-            // HACK1: If the mouseDown was not called (because the clicked inside of a 
-            // boxselector box which cancelled event propagation), then use the global
-            // copy of the click location as the mouseDownPoint. Search for "HACK1" in 
-            // boxselector and pointselector for the rest of the story.
-            if (globalMouseDownPoint) {
-                mouseDownPoint = globalMouseDownPoint;
-                globalMouseDownPoint = null;
-            }
-            else {
-                return;
-            }
-        }
+        if (!mouseDownPoint) return;
         mouseUpPoint = makePoint(e);
         if (MM.Point.distance(mouseDownPoint, mouseUpPoint) < tolerance) {
             pointselector.addLocation(map.pointLocation(mouseDownPoint));
@@ -4251,8 +4226,22 @@ wax.mm.pointselector = function(map, tilejson, opts) {
         mouseDownPoint = null;
     }
 
+    // In the case where a boxselector and pointselector are both being used, this function
+    // can be called to ensure that the pointselector will run successfully when the user
+    // clicks inside of the box by registering the pointselector mouseDown on the boxDiv element.
+    // If this is not done, then the pointselector mouseDown will not be called when the user
+    // clicks inside of the box since boxselector has to cancel event propagation after its
+    // mouseDown is called.
+    pointselector.addBoxselector = function(aBoxselector) {
+        if (logFunctions) { console.log("pointselector.addBoxselector..."); }
+
+        if (boxDiv = aBoxselector.getboxdiv()) {
+            MM.addEvent(boxDiv, 'mousedown', mouseDown);
+        }
+    }
+
     // API for programmatically adding points to the map - this
-    // calls the callback for ever point added, so it can be symmetrical.
+    // calls the callback for every point added, so it can be symmetrical.
     // Useful for initializing the map when it's a part of a form.
     pointselector.addLocation = function(location) {
         if (logFunctions) { console.log("pointselector.addLocation..."); }
@@ -4270,11 +4259,6 @@ wax.mm.pointselector = function(map, tilejson, opts) {
         if (logFunctions) { console.log("pointselector.add..."); }
 
         bean.add(map.parent, 'mousedown', mouseDown);
-        // HACK1: Adding mouseup handler here rather than in mousedown so that if 
-        // mousedown is skipped due to boxselector cancelling event propagation, then 
-        // mouseup will still be called. Search for "HACK1" in boxselector and 
-        // pointselector for the rest of the story.
-        bean.add(map.parent, 'mouseup', mouseUp);
         map.addCallback('drawn', drawPoints);
         return this;
     };

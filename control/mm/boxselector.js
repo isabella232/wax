@@ -1,22 +1,6 @@
 wax = wax || {};
 wax.mm = wax.mm || {};
 
-// HACK1: Had a problem where boxselector mousedown was cancelling events if you 
-// clicked inside the box. This meant that pointselector mousedown was not getting 
-// called and was therefore not saving pointselector.mouseDownPoint. This effectively 
-// made pointselector non-functional when trying to select a point inside of a 
-// boxselector box. The ideal solution would be to allow mousedown to propagate so 
-// that pointselector mousedown gets called. Unfortunately, when the mouse later 
-// moves, then both the boxselector.mouseMove is called (moving the box) and the 
-// metamaps.DragHandler.mouseMove is called (moving the map). cancelEvent does not 
-// seem to stop propagation to the mouseMove event on the document (don't know why). 
-// So, as a hack, I save this globalMouseDownPoint in boxselector when you click 
-// inside the box and then in pointselector.mouseUp, if pointselector.mouseDownPoint 
-// was never set in pointselector.mouseDown, then I use the value that was saved in 
-// this global variable. Search for "HACK1" in boxselector and pointselector for the 
-// rest of the story.
-var globalMouseDownPoint = null;
-
 wax.mm.boxselector = function(map, tilejson, opts) {
     // Set this to true if you want all of the boxselector functions to write to the 
     // console when they execute.
@@ -60,7 +44,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
         boxselector = {};
 
     function getMousePoint(e) {
-        if (logFunctions) { console.log("boxselector.getMousePoint..."); }
+        //if (logFunctions) { console.log("boxselector.getMousePoint..."); }
 
         // start with just the mouse (x, y)
         var point = new MM.Point(e.clientX, e.clientY);
@@ -127,7 +111,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // Figure out if the point is inside the box and not near the edges.
     function insideBox(point) {
-        if (logFunctions) { console.log("boxselector.insideBox..."); }
+        //if (logFunctions) { console.log("boxselector.insideBox..."); }
 
         // If we are between mouseDown and mouseUp, we may have already figured this out. 
         // If we did and we are inside the box, no point in checking again.
@@ -150,7 +134,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
     // Figure out if the point is outside the box and not near the edges.
     function outsideBox(point) {
-        if (logFunctions) { console.log("boxselector.outsideBox..."); }
+        //if (logFunctions) { console.log("boxselector.outsideBox..."); }
 
         // If we are between mouseDown and mouseUp, we may have already figured this out. 
         // If we did and we are inside the box, no point in checking again.
@@ -276,10 +260,6 @@ wax.mm.boxselector = function(map, tilejson, opts) {
             else if (insideBox(mouseDownPoint)) {
                 // User clicked inside the box and wants to move the box.
                 clickedInsideBox = true;
-                // HACK1: Saving the point where the user clicked into a global variable
-                // so that it can be used in pointselector.mouseUp later. Search for "HACK1" 
-                // in boxselector and pointselector for the rest of the story.
-                globalMouseDownPoint = mouseDownPoint;
             }
             else { // User clicked outside of the box and wants to move the map.
                 // Return without cancelling events since map move handling is in another event.
@@ -504,7 +484,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
     }
 
     function drawbox(map, e) {
-        if (logFunctions) { console.log("boxselector.drawbox..."); }
+        //if (logFunctions) { console.log("boxselector.drawbox..."); }
 
         if (!boxDiv || !box) return;
         var br = map.locationPoint(box[1]),
@@ -523,7 +503,7 @@ wax.mm.boxselector = function(map, tilejson, opts) {
     }
 
     boxselector.extent = function(x, silent) {
-        if (logFunctions) { console.log("boxselector.extent..."); }
+        //if (logFunctions) { console.log("boxselector.extent..."); }
 
         if (!x) return box;
 
@@ -541,6 +521,12 @@ wax.mm.boxselector = function(map, tilejson, opts) {
 
         if (!silent) callback(box);
     };
+
+    boxselector.getboxdiv = function()
+    {
+        //if (logFunctions) { console.log("boxselector.getboxdiv..."); }
+        return boxDiv;
+    }
 
     boxselector.add = function(map) {
         if (logFunctions) { console.log("boxselector.add..."); }

@@ -30,7 +30,7 @@ wax.mm.pointselector = function(map, tilejson, opts) {
 
     // Create a `com.modestmaps.Point` from a screen event, like a click.
     function makePoint(e) {
-        if (logFunctions) { console.log("pointselector.makePoint..."); }
+        //if (logFunctions) { console.log("pointselector.makePoint..."); }
 
         var coords = wax.u.eventoffset(e);
         var point = new MM.Point(coords.x, coords.y);
@@ -73,7 +73,7 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     // Redraw the points when the map is moved, so that they stay in the
     // correct geographic locations.
     function drawPoints() {
-        if (logFunctions) { console.log("pointselector.drawpoints..."); }
+        //if (logFunctions) { console.log("pointselector.drawpoints..."); }
 
         var offset = new MM.Point(0, 0);
         for (var i = 0; i < locations.length; i++) {
@@ -105,6 +105,7 @@ wax.mm.pointselector = function(map, tilejson, opts) {
         if (logFunctions) { console.log("pointselector.mouseDown..."); }
 
         mouseDownPoint = makePoint(e);
+        bean.add(map.parent, 'mouseup', mouseUp);
     }
 
     // Remove the awful circular reference from locations.
@@ -112,19 +113,7 @@ wax.mm.pointselector = function(map, tilejson, opts) {
     function mouseUp(e) {
         if (logFunctions) { console.log("pointselector.mouseUp..."); }
 
-        if (!mouseDownPoint) {
-            // HACK1: If the mouseDown was not called (because the clicked inside of a 
-            // boxselector box which cancelled event propagation), then use the global
-            // copy of the click location as the mouseDownPoint. Search for "HACK1" in 
-            // boxselector and pointselector for the rest of the story.
-            if (globalMouseDownPoint) {
-                mouseDownPoint = globalMouseDownPoint;
-                globalMouseDownPoint = null;
-            }
-            else {
-                return;
-            }
-        }
+        if (!mouseDownPoint) return;
         mouseUpPoint = makePoint(e);
         if (MM.Point.distance(mouseDownPoint, mouseUpPoint) < tolerance) {
             pointselector.addLocation(map.pointLocation(mouseDownPoint));
@@ -133,8 +122,22 @@ wax.mm.pointselector = function(map, tilejson, opts) {
         mouseDownPoint = null;
     }
 
+    // In the case where a boxselector and pointselector are both being used, this function
+    // can be called to ensure that the pointselector will run successfully when the user
+    // clicks inside of the box by registering the pointselector mouseDown on the boxDiv element.
+    // If this is not done, then the pointselector mouseDown will not be called when the user
+    // clicks inside of the box since boxselector has to cancel event propagation after its
+    // mouseDown is called.
+    pointselector.addBoxselector = function(aBoxselector) {
+        if (logFunctions) { console.log("pointselector.addBoxselector..."); }
+
+        if (boxDiv = aBoxselector.getboxdiv()) {
+            MM.addEvent(boxDiv, 'mousedown', mouseDown);
+        }
+    }
+
     // API for programmatically adding points to the map - this
-    // calls the callback for ever point added, so it can be symmetrical.
+    // calls the callback for every point added, so it can be symmetrical.
     // Useful for initializing the map when it's a part of a form.
     pointselector.addLocation = function(location) {
         if (logFunctions) { console.log("pointselector.addLocation..."); }
@@ -152,11 +155,6 @@ wax.mm.pointselector = function(map, tilejson, opts) {
         if (logFunctions) { console.log("pointselector.add..."); }
 
         bean.add(map.parent, 'mousedown', mouseDown);
-        // HACK1: Adding mouseup handler here rather than in mousedown so that if 
-        // mousedown is skipped due to boxselector cancelling event propagation, then 
-        // mouseup will still be called. Search for "HACK1" in boxselector and 
-        // pointselector for the rest of the story.
-        bean.add(map.parent, 'mouseup', mouseUp);
         map.addCallback('drawn', drawPoints);
         return this;
     };
